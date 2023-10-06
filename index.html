@@ -1,7 +1,42 @@
 <div class="w-full">
-
-    <img class="headka" src="marketasvatba.png" />
+    <img id="headka" class="headka" src="marketasvatba.png" />
+    <img id="jonas" class="jonas" src="jonas.png" onClick="javascript:downloadResource('https://tymojemalakundo.github.io/audio.mp3')" />
 </div>
+
+<script>
+    function downloadBlob(blob, filename) {
+        var a = document.createElement('a');
+        a.download = filename;
+        a.href = blob;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    }
+
+    function downloadResource(url) {
+        fetch(url, {
+            mode: 'no-cors'
+            })
+            .then(response => response.blob())
+            .then(blob => {
+            let blobUrl = window.URL.createObjectURL(blob);
+            downloadBlob(blobUrl, 'povidanicko.mp3');
+            })
+        .catch(e => console.error(e));
+    }
+
+    document.addEventListener('click', () => {
+        const elem = document.getElementById('headka');
+        if (elem.classList.contains('rotato')) {
+            elem.classList.remove('rotato');
+        } else {
+            elem.classList.add('rotato');
+            const audio = new Audio('audio.mp3');
+            audio.play();
+        }
+
+    })
+</script>
 
 <style>
     * {
@@ -20,8 +55,23 @@
         width: 100%;
     }
     .headka {
+        top: 10%;
         position: absolute;
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+    }
+    .rotato {
         animation: rotation 7s infinite linear;
+    }
+    .jonas {
+        width: 100%;
+        max-width: 400px;
+        background-color: transparent;
+        z-index: 2;
+        position: absolute;
+        bottom: 0;
     }
 </style>
