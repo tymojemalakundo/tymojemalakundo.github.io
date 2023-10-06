@@ -1,7 +1,27 @@
-<img src="marketahlava1.png" />
+<div class="w-full">
+
+    <img class="headka" src="marketasvatba.png" />
+</div>
 
 <style>
     * {
         background-color: black;
+        overflow: hidden;
+    }
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(359deg);
+        }
+    }
+    .w-full {
+        width: 100%;
+    }
+    .headka {
+        position: absolute;
+        margin: auto;
+        animation: rotation 7s infinite linear;
     }
 </style>
