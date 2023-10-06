@@ -62,8 +62,9 @@
 
         const jezek = document.getElementById('jezek')
         const coord = jezek.getBoundingClientRect();
-        tag.style.top = coord.top + 4;
-        tag.style.left = coord.left;
+        console.log(coord, window.screen)
+        tag.style.top = coord.top / document.documentElement.clientHeight * 100 + '%';
+        tag.style.left = coord.left / document.documentElement.clientWidth * 100 + '%';
         element.appendChild(tag);
         setTimeout(() => {
             tag.remove()
