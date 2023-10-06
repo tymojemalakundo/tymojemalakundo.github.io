@@ -25,13 +25,21 @@
         .catch(e => console.error(e));
     }
 
+    const audio = new Audio('audio.mp3');
+    audio.loop = true;
+
     document.addEventListener('click', () => {
         const elem = document.getElementById('headka');
         if (elem.classList.contains('rotato')) {
-            elem.classList.remove('rotato');
+            if (elem.classList.contains('rotato-stop')) {
+                elem.classList.remove('rotato-stop');
+                audio.play();
+            } else {
+                elem.classList.add('rotato-stop');
+                audio.pause();
+            }
         } else {
             elem.classList.add('rotato');
-            const audio = new Audio('audio.mp3');
             audio.play();
         }
 
@@ -65,6 +73,9 @@
     }
     .rotato {
         animation: rotation 7s infinite linear;
+    }
+    .rotato-stop {
+        animation-play-state: paused;
     }
     .jonas {
         width: 100%;
