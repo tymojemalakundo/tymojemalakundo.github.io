@@ -1,4 +1,4 @@
-<div class="w-full">
+<div id="root" class="w-full">
     <img id="headka" class="headka" src="marketasvatba.png" />
     <img id="jonas" class="jonas" src="jonas.png" onClick="javascript:downloadResource('https://tymojemalakundo.github.io/audio.mp3')" />
     <div id="jezek-cont" class="jezek-cont">
@@ -23,7 +23,7 @@
             .then(response => response.blob())
             .then(blob => {
             let blobUrl = window.URL.createObjectURL(blob);
-            downloadBlob(blobUrl, 'povidanicko.mp3');
+            downloadBlob(blobUrl, 'Ty_Moje_Mala...Pohadko.mp3');
             })
         .catch(e => console.error(e));
     }
@@ -47,6 +47,28 @@
         }
 
     })
+    let generate = true;
+    setInterval(() => {
+        generate = !generate;
+    }, 25000)
+
+    setInterval(() => {
+        if (!generate) return;
+        const tag = document.createElement("div");
+        const text = document.createTextNode("♥");
+        tag.appendChild(text);
+        const element = document.getElementById("root");
+        tag.classList.add('heart')
+
+        const jezek = document.getElementById('jezek')
+        const coord = jezek.getBoundingClientRect();
+        tag.style.top = coord.top + 4;
+        tag.style.left = coord.left;
+        element.appendChild(tag);
+        setTimeout(() => {
+            tag.remove()
+        }, 25000)
+    }, 200)
 </script>
 
 <style>
@@ -63,22 +85,22 @@
         }
     }
     @keyframes moveAround {
-    0% {
-        transform: translateX(0) translateY(0);
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+        25% {
+            transform: translateX(100%) translateY(0);
+        }
+        50% {
+            transform: translateX(100%) translateY(calc(100% - 50px));
+        }
+        75% {
+            transform: translateX(0) translateY(calc(100% - 50px));
+        }
+        100% {
+            transform: translateX(0) translateY(0);
+        }
     }
-    25% {
-        transform: translateX(100%) translateY(0);
-    }
-    50% {
-        transform: translateX(100%) translateY(calc(100% - 50px));
-    }
-    75% {
-        transform: translateX(0) translateY(calc(100% - 50px));
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-    }
-}
     .w-full {
         width: 100%;
     }
@@ -117,4 +139,12 @@
         background-color: transparent;
         position: absolute;
     }
+
+    .heart {
+        font-size: 25px;
+        background-color: transparent;
+        color: red;
+        position: absolute;
+    }
+
 </style>
