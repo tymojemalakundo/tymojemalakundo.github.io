@@ -1,6 +1,9 @@
 <div class="w-full">
     <img id="headka" class="headka" src="marketasvatba.png" />
     <img id="jonas" class="jonas" src="jonas.png" onClick="javascript:downloadResource('https://tymojemalakundo.github.io/audio.mp3')" />
+    <div id="jezek-cont" class="jezek-cont">
+        <img id="jezek" class="jezek" src="jezek.png" />
+    </div>
 </div>
 
 <script>
@@ -59,6 +62,23 @@
             transform: rotate(359deg);
         }
     }
+    @keyframes moveAround {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(100%) translateY(0);
+    }
+    50% {
+        transform: translateX(100%) translateY(calc(100% - 50px));
+    }
+    75% {
+        transform: translateX(0) translateY(calc(100% - 50px));
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
     .w-full {
         width: 100%;
     }
@@ -84,5 +104,17 @@
         z-index: 2;
         position: absolute;
         bottom: 0;
+    }
+    .jezek-cont {
+        animation: moveAround 25s linear infinite;
+        width: calc(100% - 50px);
+        background-color: transparent;
+        height: calc(100% - 50px);
+    }
+    .jezek {
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        position: absolute;
     }
 </style>
